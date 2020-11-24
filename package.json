@@ -17,14 +17,14 @@
   ],
   "scripts": {
     "build": "babel src -d dist --extensions \".js,.jsx,.ts,.tsx\" --ignore \"**/*.test.js\" --ignore \"**/*.stories.js\"",
-    "build-storybook": "build-storybook -s public",
+    "build-storybook": "build-storybook",
     "eject": "react-scripts eject",
     "lint": "yarn lint:js && yarn lint:package",
     "lint:js": "cross-env NODE_ENV=production eslint --cache --cache-location=.cache/eslint --ext .js,.jsx,.html,.ts,.tsx,.mjs --report-unused-disable-directives",
     "lint:package": "sort-package-json",
     "start": "react-scripts start",
     "storybook": "start-storybook -p 6006",
-    "test": "react-scripts test"
+    "test": "jest src"
   },
   "lint-staged": {
     "*.html": [
@@ -73,8 +73,11 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.15",
+    "autoprefixer": "^10.0.2",
     "babel-loader": "^8.2.1",
     "cross-env": "^7.0.2",
+    "jest": "^26.6.3",
     "react-scripts": "4.0.0",
     "sort-package-json": "^1.48.0",
     "typescript": "^4.1.2"
