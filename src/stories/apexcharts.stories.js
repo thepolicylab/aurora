@@ -41,7 +41,7 @@ const options = {
       fontFamily: "IBM Plex Sans",
     },
   },
-  colors: ["#2185A6", "#EF476F"],
+  colors: ["#266884", "#DE6330"],
   xaxis: {
     categories: ["Children", "Adult 18-25", "Adult 25-62", "Adult 62+"],
     labels: {
