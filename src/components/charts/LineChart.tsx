@@ -1,9 +1,14 @@
 import React from "react"
 import merge from "deepmerge"
 
-import { ChartWrapper, RecordSet, RecordEntry, ChartProps } from "./ChartWrapper"
+import {
+  ChartWrapper,
+  RecordSet,
+  RecordEntry,
+  ChartProps,
+} from "./ChartWrapper"
 
-interface LineChartProps extends ChartProps {
+export interface LineChartProps extends ChartProps {
   strokeWidths?: number | number[]
   /**
    * The type of dashed lines for each line. Higher numnbers means more space between dashes.
@@ -50,7 +55,11 @@ interface LineSeriesEntry {
 
 export type LineSeries = LineSeriesEntry[]
 
-const makeSeries = (data: RecordSet, x: string, y: string[]): LineSeries => {
+export const makeSeries = (
+  data: RecordSet,
+  x: string,
+  y: string[]
+): LineSeries => {
   const series = y.map(
     (label: string): LineSeriesEntry => ({
       name: label,
@@ -65,6 +74,61 @@ const makeSeries = (data: RecordSet, x: string, y: string[]): LineSeries => {
 
   return series
 }
+
+export const makeDefaultOptions = (
+  strokeWidths: number | number[],
+  dashTypes: number | number[],
+  curved: boolean,
+  markerSizes: number | number[],
+  xMin: number | undefined,
+  xMax: number | undefined,
+  yMin: number | undefined,
+  yMax: number | undefined
+): Record<string, unknown> => ({
+  chart: {
+    animations: {
+      enabled: true,
+      easing: "easeinout",
+      speed: 800,
+      animateGradually: {
+        enabled: true,
+        delay: 30,
+      },
+      dynamicAnimation: {
+        enabled: true,
+        speed: 350,
+      },
+    },
+  },
+  stroke: {
+    curve: curved ? "smooth" : "straight",
+    width: strokeWidths,
+    dashArray: dashTypes,
+  },
+  markers: {
+    size: markerSizes,
+    hover: {
+      size:
+        typeof markerSizes === "number"
+          ? markerSizes + 1
+          : markerSizes.map(size => size + 1),
+    },
+  },
+  xaxis: {
+    min: xMin,
+    max: xMax,
+    axisBorder: {
+      color: "#333333",
+    },
+    axisTicks: {
+      color: "#333333",
+    },
+  },
+  yaxis: {
+    min: yMin,
+    max: yMax,
+  },
+})
 
 export const LineChart: React.FC<LineChartProps> = ({
   data,
@@ -89,51 +153,16 @@ export const LineChart: React.FC<LineChartProps> = ({
 }: LineChartProps) => {
   const series = makeSeries(data, x, y)
 
-  const defaultOptions = {
-    chart: {
-      animations: {
-        enabled: true,
-        easing: "easeinout",
-        speed: 800,
-        animateGradually: {
-          enabled: true,
-          delay: 30,
-        },
-        dynamicAnimation: {
-          enabled: true,
-          speed: 350,
-        },
-      },
-    },
-    stroke: {
-      curve: curved ? "smooth" : "straight",
-      width: strokeWidths,
-      dashArray: dashTypes,
-    },
-    markers: {
-      size: markerSizes,
-      hover: {
-        size:
-          typeof markerSizes === "number"
-            ? markerSizes + 1
-            : markerSizes.map(size => size + 1),
-      },
-    },
-    xaxis: {
-      min: xMin,
-      max: xMax,
-      axisBorder: {
-        color: "#333333",
-      },
-      axisTicks: {
-        color: "#333333",
-      },
-    },
-    yaxis: {
-      min: yMin,
-      max: yMax,
-    },
-  }
+  const defaultOptions = makeDefaultOptions(
+    strokeWidths,
+    dashTypes,
+    curved,
+    markerSizes,
+    xMin,
+    xMax,
+    yMin,
+    yMax
+  )
 
   const additionalOptions = merge(defaultOptions, options)
 

@@ -20,11 +20,11 @@ interface BasicProps {
   /**
    * The title of the chart
    */
-  title: string
+  title?: string
   /**
    * The subtitle of the chart.
    */
-  subtitle: string
+  subtitle?: string
   /**
    * The label for the x-axis
    */
