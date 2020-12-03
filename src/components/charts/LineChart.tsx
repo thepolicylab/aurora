@@ -12,11 +12,11 @@ interface LineChartProps extends ChartProps {
   /**
    * Whether each line is curved.
    */
-  curved: boolean
+  curved?: boolean
   /**
    * Specify the size of markers for each line. 0 means no markers.
    */
-  markerSizes: number | number[]
+  markerSizes?: number | number[]
   /**
    * The title of the chart
    */
