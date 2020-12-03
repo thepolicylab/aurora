@@ -1,27 +1,53 @@
 import React from "react"
 import merge from "deepmerge"
 
-import { ChartWrapper, RecordSet } from "./ChartWrapper"
+import {
+  ChartWrapper,
+  RecordSet,
+  RecordEntry,
+  ChartProps,
+} from "./ChartWrapper"
 
-interface BarChartProps {
-  data: string | RecordSet
-  x: string
-  y: string[]
-  colors?: string[]
+interface BarChartProps extends ChartProps {
+  /**
+   * The order in which the x or y axis labels should be displayed.
+   */
   xOrder?: string[]
+  /**
+   * WHether the bar chart should be horizontal.
+   */
   horizontal?: boolean
+  /**
+   * Whether the bar chart should be stacked.
+   */
   stacked?: boolean
-  title: string
-  subtitle: string
+  /**
+   * The minimum value of the x (horizontal) or y axis.
+   */
   min?: number
+  /**
+   * The maximum value of the x (horizontal) or y axis. Useful when data labels overflow.
+   */
   max?: number
-  width?: string
-  height?: string
+  /**
+   * The width of the chart object. Defaults to 100% so it is responsive.
+   */
   showLabels?: boolean
-  options?: Record<string, unknown>
 }
 
-const makeDataLabelOptions = (stacked: boolean, horizontal: boolean, min: number, max: number) => {
+interface BarSeriesEntry {
+  name: string
+  data: (string | number)[]
+}
+
+export type BarSeries = BarSeriesEntry[]
+
+const makeDataLabelOptions = (
+  stacked: boolean,
+  horizontal: boolean,
+  min: number,
+  max: number
+) => {
   const labelOptions: Record<string, unknown> = {}
   if (stacked) {
     labelOptions["dataLabels"] = {
@@ -52,15 +78,41 @@ const makeDataLabelOptions = (stacked: boolean, horizontal: boolean, min: number
   if (horizontal) {
     labelOptions["xaxis"] = {
       min,
-      max
+      max,
+      axisTicks: {
+        show: false
+      },
+      tickAmount: 5
     }
   } else {
     labelOptions["yaxis"] = {
       min,
-      max
+      max,
     }
   }
   return labelOptions
+}
+
+const sortFieldByArrayIndex = (
+  arr: RecordSet,
+  order: unknown[],
+  field: string
+): RecordSet => {
+  const newArr = [...arr]
+  newArr.sort(
+    (a: RecordEntry, b: RecordEntry) =>
+      order.indexOf(a[field]) - order.indexOf(b[field])
+  )
+  return newArr
+}
+
+const makeSeries = (data: RecordSet, y: string[]): BarSeries => {
+  const series = y.map(label => ({
+    name: label,
+    data: data.map(entry => entry[label]),
+  }))
+
+  return series
 }
 
 export const BarChart: React.FC<BarChartProps> = ({
@@ -80,12 +132,24 @@ export const BarChart: React.FC<BarChartProps> = ({
   height = "600px",
   showLabels = false,
 }: BarChartProps) => {
+  const sortedData = xOrder ? sortFieldByArrayIndex([...data], xOrder, x) : data
+
+  const series = makeSeries(sortedData, y)
+
+  const labels = data.map(entry => entry[x])
+
   const defaultOptions = {
     chart: {
       stacked,
+      animations: {
+        easing: "easeout",
+        speed: 600,
+        animateGradually: {
+          delay: 200,
+        },
+      },
     },
-    title: { text: title },
-    subtitle: { text: subtitle },
+    labels,
     legend: {
       markers: {
         width: 28,
@@ -95,29 +159,32 @@ export const BarChart: React.FC<BarChartProps> = ({
     plotOptions: {
       bar: {
         horizontal,
-        dataLabels: { 
+        dataLabels: {
           enabled: showLabels,
-          position: stacked ? "center" : "top" },
+          position: stacked ? "center" : "top",
+        },
       },
     },
   }
 
-  Object.assign(defaultOptions, makeDataLabelOptions(stacked, horizontal, min, max))
+  Object.assign(
+    defaultOptions,
+    makeDataLabelOptions(stacked, horizontal, min, max)
+  )
 
   const additionalOptions = merge(defaultOptions, options)
 
   return (
     <>
       <ChartWrapper
-        data={data}
-        x={x}
-        y={y}
-        xOrder={xOrder}
+        series={series}
         colors={colors}
         type="bar"
+        title={title}
+        subtitle={subtitle}
         width={width}
         height={height}
-        additionalOptions={additionalOptions}
+        options={additionalOptions}
       />
     </>
   )

@@ -1,117 +1,121 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import Chart from "react-apexcharts"
 import merge from "deepmerge"
 import { globalOptions } from "../shared/ApexConfig"
-import { csv as d3_csv } from "d3"
 
-type RecordEntry = Record<string, string | number>
+import { BarSeries } from "./BarChart"
+import { LineSeries } from "./LineChart"
+
+type Series = BarSeries | LineSeries
+
+export type RecordEntry = Record<string, string | number>
 
 export type RecordSet = RecordEntry[]
 
-interface SeriesEntry {
-  name: string
-  data: (string | number)[]
-}
-
-type Series = SeriesEntry[]
-
-interface ChartWrapperProps {
-  data: string | RecordSet
-  x: string
-  y: string[]
-  xOrder?: string[]
-  type: "line" | "area" | "bar"
-  additionalOptions: Record<string, unknown>
+interface BasicProps {
+  /**
+   * An array of colors to use for each field specified in y.
+   */
   colors?: string[]
+  /**
+   * The title of the chart
+   */
+  title: string
+  /**
+   * The subtitle of the chart.
+   */
+  subtitle: string
+  /**
+   * The label for the x-axis
+   */
+  xLab?: string
+  /**
+   * The label for the y-axis
+   */
+  yLab?: string
   width?: string
+  /**
+   * The height of the chart object. Defaults to 600px.
+   */
   height?: string
+  /**
+   * Additional options to pass directly to ApexCharts for more fine tuned adjustments.
+   * See [ApexCharts doecumentation](https://apexcharts.com/docs/options/) for more details.
+   */
+  options?: Record<string, unknown>
 }
 
-const sortFieldByArrayIndex = (
-  arr: RecordSet,
-  order: unknown[],
-  field: string
-): RecordSet => {
-  const newArr = [...arr]
-  newArr.sort(
-    (a: RecordEntry, b: RecordEntry) =>
-      order.indexOf(a[field]) - order.indexOf(b[field])
-  )
-  return newArr
-}
-
-const makeSeriesAndLabels = (
-  data: RecordSet,
-  x: string,
+export interface ChartProps extends BasicProps {
+  /**
+   * An array of Record type objects or a string that's the relative path to the CSV file.
+   * The csv file should be in wide format.
+   */
+  data: RecordSet
+  /**
+   * The field to use for x-axis (or y-axis in the case of horizontal barcharts).
+   */
+  x: string
+  /**
+   * An array of field names for the columns to visualize. The order of the names
+   * should also specify the display order for the fields.
+   */
   y: string[]
-): [Series, string[]] => {
-  console.log(data)
-  const series = y.map(label => ({
-    name: label,
-    data: data.map(entry => entry[label]),
-  }))
+}
 
-  return [series, data.map(entry => entry[x] as string)]
+interface ChartWrapperProps extends BasicProps {
+  /**
+   * The series array to pass to the ApexCharts react component
+   */
+  series: Series
+  /**
+   * The type of the chart to pass to the ApexCharts react component
+   */
+  type: "line" | "area" | "bar"
 }
 
 export const ChartWrapper: React.FC<ChartWrapperProps> = ({
-  data,
-  x,
-  y,
-  xOrder,
+  series,
   type,
-  additionalOptions,
+  options,
   colors,
+  title,
+  subtitle,
+  xLab,
+  yLab,
   width,
   height,
 }) => {
-  const [chartState, setChartState] = useState({
-    series: null,
-    options: colors
-      ? {
-          ...merge(globalOptions, additionalOptions),
-          colors,
-        }
-      : merge(globalOptions, additionalOptions),
-  })
+  const commonOptions = {
+    title: { text: title },
+    subtitle: { text: subtitle },
+    xaxis: {
+      title: {
+        text: xLab,
+      },
+    },
+    yaxis: {
+      title: {
+        text: yLab,
+      },
+    },
+  }
 
-  useEffect(() => {
-    if (typeof data === "string") {
-      const fetchData = async (dataPath: string) => {
-        const loadedData = await d3_csv(dataPath)
-        const sortedData = xOrder
-          ? sortFieldByArrayIndex(loadedData, xOrder, x)
-          : [...loadedData]
-        const [computedSeries, labels] = makeSeriesAndLabels(sortedData, x, y)
-        setChartState(state => ({
-          series: computedSeries,
-          options: Object.assign(state.options, { labels }),
-        }))
-      }
-      fetchData(data)
-    } else {
-      const sortedData = xOrder
-        ? sortFieldByArrayIndex(data, xOrder, x)
-        : [...data]
-      const [computedSeries, labels] = makeSeriesAndLabels(sortedData, x, y)
-      setChartState(state => ({
-        series: computedSeries,
-        options: Object.assign(state.options, { labels }),
-      }))
-    }
-  }, [data])
+  let chartOptions: Record<string, unknown> = merge(
+    globalOptions,
+    commonOptions
+  )
+  chartOptions = merge(chartOptions, options)
+  if (colors) Object.assign(chartOptions, { colors })
 
   return (
     <>
-      {chartState.series && (
-        <Chart
-          series={chartState.series}
-          type={type}
-          width={width}
-          height={height}
-          options={chartState.options}
-        />
-      )}
+      <Chart
+        series={series}
+        type={type}
+        width={width}
+        height={height}
+        options={chartOptions}
+      />
     </>
   )
 }

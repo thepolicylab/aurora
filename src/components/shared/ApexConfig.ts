@@ -6,13 +6,6 @@ export const globalOptions = {
         fontFamily: "IBM Plex Sans",
       },
     },
-    animations: {
-      easing: "easeout",
-      speed: 600,
-      animateGradually: {
-        delay: 200,
-      },
-    },
   },
   title: {
     style: {
@@ -27,6 +20,9 @@ export const globalOptions = {
     },
   },
   colors: ["#266884", "#DE6330"],
+  grid: {
+    borderColor: "#DDDDDD",
+  },
   xaxis: {
     labels: {
       style: {
@@ -49,11 +45,16 @@ export const globalOptions = {
   },
   legend: {
     position: "top",
-    offsetY: -25,
+    offsetY: -35,
     fontFamily: "Roboto",
     fontSize: "14px",
     itemMargin: {
-      horizontal: 10,
+      horizontal: 25,
+    },
+  },
+  tooltip: {
+    style: {
+      fontSize: "14px",
     },
   },
 }
