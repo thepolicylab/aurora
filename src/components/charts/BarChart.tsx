@@ -1,5 +1,6 @@
 import React from "react"
 import merge from "deepmerge"
+import { ApexOptions } from "apexcharts"
 
 import {
   ChartWrapper,
@@ -48,7 +49,7 @@ const makeDataLabelOptions = (
   min: number,
   max: number
 ) => {
-  const labelOptions: Record<string, unknown> = {}
+  const labelOptions: ApexOptions = {}
   if (stacked) {
     labelOptions["dataLabels"] = {
       textAnchor: "middle",
@@ -59,7 +60,7 @@ const makeDataLabelOptions = (
   } else {
     if (horizontal) {
       labelOptions["dataLabels"] = {
-        textAnchor: "left",
+        textAnchor: "start",
         offsetX: 20,
         style: {
           colors: ["#222"],
@@ -80,9 +81,9 @@ const makeDataLabelOptions = (
       min,
       max,
       axisTicks: {
-        show: false
+        show: false,
       },
-      tickAmount: 5
+      tickAmount: 5,
     }
   } else {
     labelOptions["yaxis"] = {
@@ -138,7 +139,7 @@ export const BarChart: React.FC<BarChartProps> = ({
 
   const labels = data.map(entry => entry[x])
 
-  const defaultOptions = {
+  const baseOptions = {
     chart: {
       stacked,
       animations: {
@@ -168,11 +169,11 @@ export const BarChart: React.FC<BarChartProps> = ({
   }
 
   Object.assign(
-    defaultOptions,
+    baseOptions,
     makeDataLabelOptions(stacked, horizontal, min, max)
   )
 
-  const additionalOptions = merge(defaultOptions, options)
+  const additionalOptions = merge(baseOptions, options)
 
   return (
     <>

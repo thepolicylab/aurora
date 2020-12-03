@@ -2,7 +2,7 @@ import React from "react"
 import merge from "deepmerge"
 
 import { ChartWrapper } from "./ChartWrapper"
-import { LineChartProps, makeSeries, makeDefaultOptions } from "./LineChart"
+import { LineChartProps, makeSeries, makeBaseOptions } from "./LineChart"
 
 interface AreaChartProps extends LineChartProps {
   stacked?: boolean
@@ -32,7 +32,7 @@ export const AreaChart: React.FC<AreaChartProps> = ({
 }: AreaChartProps) => {
   const series = makeSeries(data, x, y)
 
-  const defaultOptions = makeDefaultOptions(
+  const baseOptions = makeBaseOptions(
     strokeWidths,
     dashTypes,
     curved,
@@ -43,7 +43,7 @@ export const AreaChart: React.FC<AreaChartProps> = ({
     yMax
   )
 
-  Object.assign(defaultOptions, {
+  Object.assign(baseOptions, {
     chart: {
       stacked,
     },
@@ -52,7 +52,7 @@ export const AreaChart: React.FC<AreaChartProps> = ({
     },
   })
 
-  const additionalOptions = merge(defaultOptions, options)
+  const additionalOptions = merge(baseOptions, options)
 
   return (
     <>

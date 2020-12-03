@@ -1,2 +1,1 @@
-export * from './components';
-export * from './utils';
+export { BarChart, AreaChart, LineChart } from "./src/components/charts"

@@ -1,6 +1,7 @@
 import React from "react"
 import Chart from "react-apexcharts"
 import merge from "deepmerge"
+import { ApexOptions } from "apexcharts"
 import { globalOptions } from "../shared/ApexConfig"
 
 import { BarSeries } from "./BarChart"
@@ -42,7 +43,7 @@ interface BasicProps {
    * Additional options to pass directly to ApexCharts for more fine tuned adjustments.
    * See [ApexCharts doecumentation](https://apexcharts.com/docs/options/) for more details.
    */
-  options?: Record<string, unknown>
+  options?: ApexOptions
 }
 
 export interface ChartProps extends BasicProps {
@@ -100,10 +101,7 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = ({
     },
   }
 
-  let chartOptions: Record<string, unknown> = merge(
-    globalOptions,
-    commonOptions
-  )
+  let chartOptions: ApexOptions = merge(globalOptions, commonOptions)
   chartOptions = merge(chartOptions, options)
   if (colors) Object.assign(chartOptions, { colors })
 

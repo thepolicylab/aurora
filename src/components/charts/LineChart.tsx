@@ -1,5 +1,6 @@
 import React from "react"
 import merge from "deepmerge"
+import { ApexOptions } from "apexcharts"
 
 import {
   ChartWrapper,
@@ -19,28 +20,25 @@ export interface LineChartProps extends ChartProps {
    */
   curved?: boolean
   /**
-   * Specify the size of markers for each line. 0 means no markers.
+   * Specify the size of markers. 0 means no markers.
    */
-  markerSizes?: number | number[]
+  markerSize?: number
   /**
-   * The title of the chart
+   * The minimum value of the x axis.
    */
   xMin?: number
   /**
-   * The maximum value of the x (horizontal) or y axis. Useful when data labels overflow.
+   * The maximum value of the x axis.
    */
   xMax?: number
   /**
-   * The minimum value of the x (horizontal) or y axis.
+   * The minimum value of the y axis.
    */
   yMin?: number
   /**
-   * The maximum value of the x (horizontal) or y axis. Useful when data labels overflow.
+   * The maximum value of the y axis.
    */
   yMax?: number
-  /**
-   * The width of the chart object. Defaults to 100% so it is responsive.
-   */
 }
 
 interface DataPoint {
@@ -75,16 +73,16 @@ export const makeSeries = (
   return series
 }
 
-export const makeDefaultOptions = (
+export const makeBaseOptions = (
   strokeWidths: number | number[],
   dashTypes: number | number[],
   curved: boolean,
-  markerSizes: number | number[],
-  xMin: number | undefined,
-  xMax: number | undefined,
-  yMin: number | undefined,
-  yMax: number | undefined
-): Record<string, unknown> => ({
+  markerSize?: number,
+  xMin?: number,
+  xMax?: number,
+  yMin?: number,
+  yMax?: number
+): ApexOptions => ({
   chart: {
     animations: {
       enabled: true,
@@ -106,12 +104,9 @@ export const makeDefaultOptions = (
     dashArray: dashTypes,
   },
   markers: {
-    size: markerSizes,
+    size: markerSize,
     hover: {
-      size:
-        typeof markerSizes === "number"
-          ? markerSizes + 1
-          : markerSizes.map(size => size + 1),
+      size: markerSize ? markerSize + 1 : markerSize,
     },
   },
   xaxis: {
@@ -138,7 +133,7 @@ export const LineChart: React.FC<LineChartProps> = ({
   strokeWidths = 3,
   dashTypes = 0,
   curved = false,
-  markerSizes = 4,
+  markerSize = 4,
   title,
   subtitle,
   xLab,
@@ -153,7 +148,7 @@ export const LineChart: React.FC<LineChartProps> = ({
 }: LineChartProps) => {
   const series = makeSeries(data, x, y)
 
-  const defaultOptions = makeDefaultOptions(
+  const baseOptions = makeBaseOptions(
     strokeWidths,
     dashTypes,
     curved,
@@ -164,7 +159,7 @@ export const LineChart: React.FC<LineChartProps> = ({
     yMax
   )
 
-  const additionalOptions = merge(defaultOptions, options)
+  const additionalOptions = merge(baseOptions, options)
 
   return (
     <>

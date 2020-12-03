@@ -1,11 +1,10 @@
-export const globalOptions = {
+import { ApexOptions } from "apexcharts"
+
+import { ApexOptions } from "apexcharts"
+
+export const globalOptions: ApexOptions = {
   chart: {
     fontFamily: "Roboto, IBM Ples Sans, sans-serif",
-    toolbar: {
-      style: {
-        fontFamily: "IBM Plex Sans",
-      },
-    },
   },
   title: {
     style: {

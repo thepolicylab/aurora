@@ -1,3 +1,3 @@
 ### Chart components
 
-This disrectory stores chart components
+This directory stores chart components

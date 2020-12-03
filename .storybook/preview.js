@@ -1,5 +1,5 @@
 
-import "../src/components/shared/fonts.css"
+import "../src/assets/fonts.css"
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
