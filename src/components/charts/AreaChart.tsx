@@ -4,7 +4,7 @@ import merge from "deepmerge"
 import { ChartWrapper } from "./ChartWrapper"
 import { LineChartProps, makeSeries, makeBaseOptions } from "./LineChart"
 
-interface AreaChartProps extends LineChartProps {
+export interface AreaChartProps extends LineChartProps {
   stacked?: boolean
 }
 
@@ -16,7 +16,7 @@ export const AreaChart: React.FC<AreaChartProps> = ({
   strokeWidths = 1,
   dashTypes = 0,
   curved = false,
-  markerSizes = 0,
+  markerSize = 0,
   stacked = false,
   title,
   subtitle,
@@ -36,7 +36,7 @@ export const AreaChart: React.FC<AreaChartProps> = ({
     strokeWidths,
     dashTypes,
     curved,
-    markerSizes,
+    markerSize,
     xMin,
     xMax,
     yMin,

@@ -4,6 +4,8 @@ import merge from "deepmerge"
 import { ApexOptions } from "apexcharts"
 import { globalOptions } from "../shared/ApexConfig"
 
+import "../../assets/apexcharts.css"
+
 import { BarSeries } from "./BarChart"
 import { LineSeries } from "./LineChart"
 
@@ -53,7 +55,7 @@ export interface ChartProps extends BasicProps {
    */
   data: RecordSet
   /**
-   * The field to use for x-axis (or y-axis in the case of horizontal barcharts).
+   * The field to use for x-axis (or y-axis in the case of horizontal bar charts).
    */
   x: string
   /**

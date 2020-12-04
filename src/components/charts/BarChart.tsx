@@ -9,7 +9,7 @@ import {
   ChartProps,
 } from "./ChartWrapper"
 
-interface BarChartProps extends ChartProps {
+export interface BarChartProps extends ChartProps {
   /**
    * The order in which the x or y axis labels should be displayed.
    */

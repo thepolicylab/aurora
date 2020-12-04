@@ -1,24 +1,30 @@
 import { ApexOptions } from "apexcharts"
 
-import { ApexOptions } from "apexcharts"
+const titleFont = "IBM Plex Sans"
+const chartFont = "Roboto, IBM Plex Sans, sans-serif"
+
+const titleSize = "22px"
+const subtitleSize = "18px"
+
+const defaultPalette = ["#266884", "#DE6330"]
 
 export const globalOptions: ApexOptions = {
   chart: {
-    fontFamily: "Roboto, IBM Ples Sans, sans-serif",
+    fontFamily: chartFont,
   },
   title: {
     style: {
-      fontSize: "22px",
-      fontFamily: "IBM Plex Sans",
+      fontSize: titleSize,
+      fontFamily: titleFont,
     },
   },
   subtitle: {
     style: {
-      fontSize: "18px",
-      fontFamily: "IBM Plex Sans",
+      fontSize: subtitleSize,
+      fontFamily: titleFont,
     },
   },
-  colors: ["#266884", "#DE6330"],
+  colors: defaultPalette,
   grid: {
     borderColor: "#DDDDDD",
   },

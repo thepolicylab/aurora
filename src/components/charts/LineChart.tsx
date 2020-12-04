@@ -106,7 +106,8 @@ export const makeBaseOptions = (
   markers: {
     size: markerSize,
     hover: {
-      size: markerSize ? markerSize + 1 : markerSize,
+      size:
+        markerSize !== undefined && markerSize > 0 ? markerSize + 1 : undefined,
     },
   },
   xaxis: {
@@ -152,7 +153,7 @@ export const LineChart: React.FC<LineChartProps> = ({
     strokeWidths,
     dashTypes,
     curved,
-    markerSizes,
+    markerSize,
     xMin,
     xMax,
     yMin,
