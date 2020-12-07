@@ -106,6 +106,16 @@ export const Sparkline: React.FC<SparklineProps> = ({
               curved,
               markerSize: 0,
               stacked: false,
+              options: {
+                fill: {
+                  type: "gradient",
+                  gradient: {
+                    opacityFrom: 1,
+                    opacityTo: 0.2,
+                    stops: [0, 80, 100],
+                  },
+                },
+              },
             },
             ...baseProps,
           } as AreaChartProps)}

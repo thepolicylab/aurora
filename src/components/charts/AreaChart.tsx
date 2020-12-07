@@ -50,9 +50,16 @@ export const AreaChart: React.FC<AreaChartProps> = ({
     dataLabels: {
       enabled: false,
     },
+    stroke: {
+      show: false,
+    },
+    fill: {
+      type: "solid",
+    },
   })
 
   const additionalOptions = merge(baseOptions, options)
+  console.log(additionalOptions)
 
   return (
     <>

@@ -84,6 +84,7 @@
     "cross-env": "^7.0.2",
     "deepmerge": "^4.2.2",
     "eslint": "^7.14.0",
+    "eslint-plugin-mdx": "^1.8.2",
     "prettier": "2.2.0",
     "react-scripts": "4.0.0",
     "sort-package-json": "^1.48.0",
