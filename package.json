@@ -17,14 +17,14 @@
   ],
   "scripts": {
     "build": "babel src -d dist --extensions \".js,.jsx,.ts,.tsx\" --ignore \"**/*.test.js\" --ignore \"**/*.stories.js\"",
-    "build-storybook": "build-storybook -s public",
+    "build-storybook": "build-storybook",
     "eject": "react-scripts eject",
     "lint": "yarn lint:js && yarn lint:package",
     "lint:js": "cross-env NODE_ENV=production eslint --cache --cache-location=.cache/eslint --ext .js,.jsx,.html,.ts,.tsx,.mjs --report-unused-disable-directives",
     "lint:package": "sort-package-json",
     "start": "react-scripts start",
     "storybook": "start-storybook -p 6006",
-    "test": "react-scripts test"
+    "test": "jest src"
   },
   "lint-staged": {
     "*.html": [
@@ -71,6 +71,7 @@
     "@storybook/addon-controls": "^6.1.10",
     "@storybook/addon-essentials": "^6.1.1",
     "@storybook/addon-links": "^6.1.1",
+    "@storybook/eslint-config-storybook": "^2.4.0",
     "@storybook/node-logger": "^6.1.1",
     "@storybook/preset-create-react-app": "^3.1.5",
     "@storybook/react": "^6.1.1",
@@ -80,11 +81,14 @@
     "@types/d3": "^6.2.0",
     "@typescript-eslint/eslint-plugin": "^4.9.0",
     "@typescript-eslint/parser": "^4.9.0",
+    "@types/jest": "^26.0.15",
+    "autoprefixer": "^10.0.2",
     "babel-loader": "^8.2.1",
     "cross-env": "^7.0.2",
     "deepmerge": "^4.2.2",
     "eslint": "^7.14.0",
     "eslint-plugin-mdx": "^1.8.2",
+    "jest": "^26.6.3",
     "prettier": "2.2.0",
     "react-scripts": "4.0.0",
     "sort-package-json": "^1.48.0",
