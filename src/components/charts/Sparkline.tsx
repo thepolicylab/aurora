@@ -3,6 +3,7 @@ import { LineChart, LineChartProps } from "./LineChart"
 import { AreaChart, AreaChartProps } from "./AreaChart"
 import { BarChart, BarChartProps } from "./BarChart"
 import { RecordSet, ChartProps } from "./ChartWrapper"
+import merge from "deepmerge"
 
 interface SparklineProps extends Omit<ChartProps, "y"> {
   /**
@@ -106,18 +107,23 @@ export const Sparkline: React.FC<SparklineProps> = ({
               curved,
               markerSize: 0,
               stacked: false,
+            },
+            ...merge(baseProps, {
               options: {
+                stroke: {
+                  show: true,
+                  width: 1
+                },
                 fill: {
                   type: "gradient",
                   gradient: {
-                    opacityFrom: 1,
+                    opacityFrom: 0.9,
                     opacityTo: 0.2,
                     stops: [0, 80, 100],
                   },
                 },
               },
-            },
-            ...baseProps,
+            }),
           } as AreaChartProps)}
         />
       )}

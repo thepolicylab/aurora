@@ -52,11 +52,14 @@ export const AreaChart: React.FC<AreaChartProps> = ({
     },
     stroke: {
       show: false,
+      curve: curved ? "smooth" : "straight",
     },
     fill: {
       type: "solid",
     },
   })
+
+  console.log(options)
 
   const additionalOptions = merge(baseOptions, options)
   console.log(additionalOptions)
