@@ -6,7 +6,7 @@ module.exports = api => {
       "@babel/preset-env",
       "@babel/preset-react",
       "@babel/preset-typescript",
-      { runtime: "automatic", importSource: "@emotion/react" },
+      "@emotion/babel-preset-css-prop",
     ],
     plugins: [
       "@babel/plugin-proposal-object-rest-spread",

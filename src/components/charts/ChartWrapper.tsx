@@ -1,13 +1,17 @@
+/** @jsx jsx */
 import React from "react"
-import Chart from "react-apexcharts"
 import merge from "deepmerge"
+import { css, jsx } from "@emotion/react"
 import { ApexOptions } from "apexcharts"
 import { globalOptions } from "../shared/ApexConfig"
 
-import "../../assets/apexcharts.css"
-
 import { BarSeries } from "./BarChart"
 import { LineSeries } from "./LineChart"
+
+// Fix for Gatsby
+import loadable from "@loadable/component" // No TypeScript support. Sigh...
+
+const Chart = loadable(() => import("react-apexcharts"))
 
 type Series = BarSeries | LineSeries
 
@@ -108,14 +112,26 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = ({
   if (colors) Object.assign(chartOptions, { colors })
 
   return (
-    <>
-      <Chart
-        series={series}
-        type={type}
-        width={width}
-        height={height}
-        options={chartOptions}
-      />
-    </>
+    <div
+      css={css`
+        .apexcharts-menu {
+          font-family: "IBM Plex Sans", Arial, Helvetica, sans-serif;
+        }
+
+        .apexcharts-menu-item {
+          font-size: 14px !important;
+        }
+      `}
+    >
+      {typeof window !== "undefined" && (
+        <Chart
+          series={series}
+          type={type}
+          width={width}
+          height={height}
+          options={chartOptions}
+        />
+      )}
+    </div>
   )
 }

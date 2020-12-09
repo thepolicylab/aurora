@@ -85,6 +85,12 @@ const makeDataLabelOptions = (
       },
       tickAmount: 5,
     }
+    labelOptions["yaxis"] = {
+      labels: {
+        show: true,
+        align: "left"
+      }
+    }
   } else {
     labelOptions["yaxis"] = {
       min,

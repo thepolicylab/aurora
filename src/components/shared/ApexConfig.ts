@@ -11,6 +11,8 @@ const defaultPalette = ["#266884", "#DE6330"]
 export const globalOptions: ApexOptions = {
   chart: {
     fontFamily: chartFont,
+    redrawOnParentResize: false,
+    redrawOnWindowResize: false,
   },
   title: {
     style: {
@@ -51,7 +53,6 @@ export const globalOptions: ApexOptions = {
   legend: {
     position: "top",
     offsetY: -35,
-    fontFamily: "Roboto",
     fontSize: "14px",
     itemMargin: {
       horizontal: 25,

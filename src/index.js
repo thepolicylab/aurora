@@ -1,1 +1,1 @@
-export { BarChart, AreaChart, LineChart, BarChartCSV, AreaChartCSV, LineChartCSV } from "./src/components/charts"
+export { BarChart, AreaChart, LineChart, BarChartCSV, AreaChartCSV, LineChartCSV } from "./components/charts"
