@@ -53,6 +53,7 @@ export const globalOptions: ApexOptions = {
   legend: {
     position: "top",
     offsetY: -35,
+    fontFamily: chartFont,
     fontSize: "14px",
     itemMargin: {
       horizontal: 25,
