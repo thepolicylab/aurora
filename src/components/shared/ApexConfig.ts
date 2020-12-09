@@ -11,8 +11,6 @@ const defaultPalette = ["#266884", "#DE6330"]
 export const globalOptions: ApexOptions = {
   chart: {
     fontFamily: chartFont,
-    redrawOnParentResize: false,
-    redrawOnWindowResize: false,
   },
   title: {
     style: {
