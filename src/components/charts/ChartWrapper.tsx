@@ -10,7 +10,6 @@ import { LineSeries } from "./LineChart"
 
 // Fix for Gatsby
 import loadable from "@loadable/component" // No TypeScript support. Sigh...
-
 const Chart = loadable(() => import("react-apexcharts"))
 
 type Series = BarSeries | LineSeries

@@ -2,7 +2,7 @@ import React from "react"
 import { Meta } from "@storybook/react/types-6-0"
 import { BarChartCSV } from "../components/charts"
 
-const data = "/data/exits-and-returns.csv"
+const dataFile = "/data/exits-and-returns.csv"
 
 export default {
   title: "CSVWrappers/Bar Chart",
@@ -11,7 +11,7 @@ export default {
 
 export const HorizontalBarChart: React.FC = () => (
   <BarChartCSV
-    data={data}
+    dataFile={dataFile}
     x={"Categories"}
     y={["Exits", "Returns"]}
     horizontal={true}
@@ -26,7 +26,7 @@ export const HorizontalBarChart: React.FC = () => (
 
 export const StandardBarChart: React.FC = () => (
   <BarChartCSV
-    data={data}
+    dataFile={dataFile}
     x={"Categories"}
     y={["Exits", "Returns"]}
     horizontal={false}
@@ -40,7 +40,7 @@ export const StandardBarChart: React.FC = () => (
 
 export const StackedHorizontalBarChart: React.FC = () => (
   <BarChartCSV
-    data={data}
+    dataFile={dataFile}
     x={"Categories"}
     y={["Exits", "Returns"]}
     stacked={true}
@@ -56,7 +56,7 @@ export const StackedHorizontalBarChart: React.FC = () => (
 
 export const StandardStackedBarChart: React.FC = () => (
   <BarChartCSV
-    data={data}
+    dataFile={dataFile}
     x={"Categories"}
     y={["Exits", "Returns"]}
     stacked={true}

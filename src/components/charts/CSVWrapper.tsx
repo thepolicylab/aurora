@@ -8,21 +8,21 @@ interface LineChartCSVProps extends Omit<LineChartProps, "data"> {
   /**
    * Specifies the path to the CSV file.
    */
-  data: string
+  dataFile: string
 }
 
 interface BarChartCSVProps extends Omit<BarChartProps, "data"> {
   /**
    * Specifies the path to the CSV file.
    */
-  data: string
+  dataFile: string
 }
 
 interface AreaChartCSVProps extends Omit<AreaChartProps, "data"> {
   /**
    * Specifies the path to the CSV file.
    */
-  data: string
+  dataFile: string
 }
 
 type CSVWrapperProps = LineChartCSVProps | BarChartCSVProps | AreaChartCSVProps
@@ -31,7 +31,7 @@ type CSVWrapperProps = LineChartCSVProps | BarChartCSVProps | AreaChartCSVProps
 const CSVWrapper = (
   chart: typeof LineChart | typeof BarChart | typeof AreaChart
 ) => {
-  return ({ data, ...otherProps }: CSVWrapperProps) => {
+  return ({ dataFile, ...otherProps }: CSVWrapperProps) => {
     const [chartData, setChartData] = useState(null)
 
     useEffect(() => {
@@ -39,7 +39,7 @@ const CSVWrapper = (
         const fetchedData = await d3_csv(dataPath)
         setChartData(fetchedData)
       }
-      fetchCSVData(data)
+      fetchCSVData(dataFile)
     }, [])
 
     return (
