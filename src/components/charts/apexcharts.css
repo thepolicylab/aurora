@@ -1,0 +1,9 @@
+/* This is a fix to the unchangeable (and ugly) fonts for ApexCharts menus */
+
+.apexcharts-menu {
+  font-family: "IBM Plex Sans", Arial, Helvetica, sans-serif;
+}
+
+.apexcharts-menu-item {
+  font-size: 14px !important;
+}
