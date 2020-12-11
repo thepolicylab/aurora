@@ -82,6 +82,7 @@
     "@testing-library/user-event": "^12.1.10",
     "@types/d3": "^6.2.0",
     "@types/jest": "^26.0.15",
+    "@types/loadable__component": "^5.13.1",
     "@typescript-eslint/eslint-plugin": "^4.9.0",
     "@typescript-eslint/parser": "^4.9.0",
     "autoprefixer": "^10.0.2",
