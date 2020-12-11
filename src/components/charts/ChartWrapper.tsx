@@ -1,7 +1,6 @@
-/** @jsx jsx */
 import React from "react"
 import merge from "deepmerge"
-import { css, jsx } from "@emotion/react"
+import { css } from "@emotion/react"
 import { ApexOptions } from "apexcharts"
 import { globalOptions } from "../shared/ApexConfig"
 
