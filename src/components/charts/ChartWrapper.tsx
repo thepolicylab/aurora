@@ -1,11 +1,12 @@
 import React from "react"
 import merge from "deepmerge"
-import { css } from "@emotion/react"
 import { ApexOptions } from "apexcharts"
 import { globalOptions } from "../shared/ApexConfig"
 
 import { BarSeries } from "./BarChart"
 import { LineSeries } from "./LineChart"
+
+import "./apexcharts.css"
 
 // Fix for Gatsby
 import loadable from "@loadable/component" // No TypeScript support. Sigh...
@@ -110,17 +111,7 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = ({
   if (colors) Object.assign(chartOptions, { colors })
 
   return (
-    <div
-      css={css`
-        .apexcharts-menu {
-          font-family: "IBM Plex Sans", Arial, Helvetica, sans-serif;
-        }
-
-        .apexcharts-menu-item {
-          font-size: 14px !important;
-        }
-      `}
-    >
+    <div>
       {typeof window !== "undefined" && (
         <Chart
           series={series}
