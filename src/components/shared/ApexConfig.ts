@@ -1,9 +1,9 @@
 import { ApexOptions } from "apexcharts"
 
-const titleFont = "IBM Plex Sans"
-const chartFont = "Roboto, IBM Plex Sans, sans-serif"
+const titleFont = "franklin-gothic-atf, sans-serif"
+const chartFont = "franklin-gothic-atf, sans-serif"
 
-const titleSize = "22px"
+const titleSize = "24px"
 const subtitleSize = "18px"
 
 const defaultPalette = ["#266884", "#DE6330"]
@@ -16,12 +16,16 @@ export const globalOptions: ApexOptions = {
     style: {
       fontSize: titleSize,
       fontFamily: titleFont,
+      fontWeight: "medium",
+      color: "#171717",
     },
   },
   subtitle: {
     style: {
       fontSize: subtitleSize,
       fontFamily: titleFont,
+      fontWeight: "medium",
+      color: "#757575",
     },
   },
   colors: defaultPalette,
@@ -39,6 +43,7 @@ export const globalOptions: ApexOptions = {
     labels: {
       style: {
         fontSize: "14px",
+        colors: "#919191",
       },
     },
   },

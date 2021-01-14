@@ -1,6 +1,7 @@
 import React from "react"
 import { Meta } from "@storybook/react/types-6-0"
 import { AreaChart } from "../components/charts/AreaChart"
+import { SoftCoral, NarwhalBlue, SeaBlue, DyerGray, NewportPlum } from "../colors"
 
 const data = [
   {
@@ -79,13 +80,39 @@ export const StackedAreaChart: React.FC = () => {
           "Food/Meals",
           "COVID-19 Hotline",
         ]}
-        colors={["#114d93", "#2eb09f", "#1272e0", "#7ea4cf", "#e6001f"]}
+        colors={[SoftCoral["500"], NarwhalBlue["500"], DyerGray["500"], SeaBlue["500"], NewportPlum["500"]]}
+        title="Calls to 211 in the past week"
+        subtitle="Number of calls"
+        width="800px"
+        height="600px"
+        stacked={true}
+        strokeWidths={0}
+      />
+    </>
+  )
+}
+
+export const StackedAreaChartWithGradient: React.FC = () => {
+  return (
+    <>
+      <AreaChart
+        data={data}
+        x={"date"}
+        y={[
+          "Housing",
+          "Disaster Services",
+          "Other Government/Economic Services",
+          "Food/Meals",
+          "COVID-19 Hotline",
+        ]}
+        colors={[SoftCoral["500"], NarwhalBlue["500"], DyerGray["500"], SeaBlue["500"], NewportPlum["500"]]}
         title="Calls to 211 in the past week"
         subtitle="Number of calls"
         width="800px"
         height="600px"
         stacked={true}
         strokeWidths={1}
+        gradient={true}
       />
     </>
   )

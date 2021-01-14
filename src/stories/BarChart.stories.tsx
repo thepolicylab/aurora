@@ -1,6 +1,7 @@
 import React from "react"
 import { Meta } from "@storybook/react/types-6-0"
 import { BarChart } from "../components/charts/BarChart"
+import { SeaBlue, NewportPlum } from "../colors"
 
 const data = [
   { category: "Children", Exits: 569, Returns: 55 },
@@ -21,7 +22,7 @@ export const HorizontalBarChart: React.FC = () => (
       x={"category"}
       y={["Exits", "Returns"]}
       horizontal={true}
-      colors={["#60BDC5", "#FEC601"]}
+      colors={[SeaBlue["500"], NewportPlum["500"]]}
       title={"Exits and Returns"}
       subtitle={"Number of people"}
       max={1800}
@@ -55,7 +56,7 @@ export const StackedHorizontalBarChart: React.FC = () => (
       y={["Exits", "Returns"]}
       stacked={true}
       horizontal={true}
-      colors={["#60BDC5", "#FEC601"]}
+      colors={[SeaBlue["500"], NewportPlum["500"]]}
       title={"Exits and Returns"}
       subtitle={"Number of people"}
       max={1800}

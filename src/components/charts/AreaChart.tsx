@@ -5,7 +5,8 @@ import { ChartWrapper } from "./ChartWrapper"
 import { LineChartProps, makeSeries, makeBaseOptions } from "./LineChart"
 
 export interface AreaChartProps extends LineChartProps {
-  stacked?: boolean
+  stacked?: boolean,
+  gradient?: boolean,
 }
 
 export const AreaChart: React.FC<AreaChartProps> = ({
@@ -13,11 +14,12 @@ export const AreaChart: React.FC<AreaChartProps> = ({
   x,
   y,
   colors,
-  strokeWidths = 1,
+  strokeWidths = 0,
   dashTypes = 0,
   curved = false,
   markerSize = 0,
   stacked = false,
+  gradient = false,
   title,
   subtitle,
   xLab,
@@ -51,11 +53,12 @@ export const AreaChart: React.FC<AreaChartProps> = ({
       enabled: false,
     },
     stroke: {
-      show: false,
+      show: strokeWidths !== 0,
+      width: strokeWidths,
       curve: curved ? "smooth" : "straight",
     },
     fill: {
-      type: "solid",
+      type: gradient ? "gradient" : "fill",
     },
   })
 
