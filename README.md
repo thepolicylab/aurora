@@ -4,7 +4,7 @@ Welcome to the documentation of The Policy Lab Design System! The Design System 
 
 # What is the Design System?
 
-![Design System architeture](/aurora/design-system.png)
+![Design System architeture](./src/assets/design-system.png?raw=true)
 
 The goal of the design system is to provide researchers and policymakers to create impactful data visualizations on-the-fly and disseminate their insights in visual narratives or web-based interactive dashboards. The design system has three major building blocks. The core of the design system is a library of data visualization components written in TypeScript and React. Based on [Apex Charts](https://apexcharts.com), the components in this library implement The Policy Lab Style Guide by default and provide animated, and interactive data visualizations with little configuration. These defaults are designed to be easily customizable to implement the style guides from other organizations.
 
