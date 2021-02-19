@@ -1,5 +1,4 @@
 import React from "react"
-import { Meta } from "@storybook/react/types-6-0"
 import { BarChart } from "../components/charts/BarChart"
 import { SeaBlue, NewportPlum } from "../colors"
 
@@ -13,7 +12,7 @@ const data = [
 export default {
   title: "Charts/Bar Chart",
   component: BarChart,
-} as Meta
+}
 
 const Template = (args) => <BarChart {...args} />
 

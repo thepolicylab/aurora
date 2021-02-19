@@ -1,6 +1,5 @@
 import React from "react"
-import { Meta } from "@storybook/react/types-6-0"
-import { AreaChart } from "../components/charts/AreaChart"
+import { LineChart } from "../components/charts/LineChart"
 
 const data = [
   {
@@ -62,13 +61,11 @@ const data = [
 ]
 
 export default {
-  title: "Charts/Area Chart",
-  component: AreaChart,
-} as Meta
+  title: "Charts/Line Chart",
+  component: LineChart,
+}
 
-const Template = args => <AreaChart {...args} />
-
-const stackedAreaArgs = {
+const lineChartArgs = {
   data: data,
   x: "date",
   y: [
@@ -82,14 +79,10 @@ const stackedAreaArgs = {
   subtitle: "Number of calls",
   width: "800px",
   height: "600px",
-  stacked: true,
-  strokeWidths: 0
+  dashTypes: [0, 1, 2, 3, 4],
 }
 
-const gradientArgs = { ...stackedAreaArgs, srokeWidths: 1, gradient: true }
+const Template = args => <LineChart {...args} />
 
-export const StackedAreaChart = Template.bind({})
-StackedAreaChart.args = stackedAreaArgs
-
-export const StackedAreaChartWithGradient = Template.bind({})
-StackedAreaChartWithGradient.args = gradientArgs
+export const StandardLineChart = Template.bind({})
+StandardLineChart.args = lineChartArgs

@@ -1,5 +1,4 @@
 import React from "react"
-import { Meta } from "@storybook/react/types-6-0"
 import { Sparkline } from "../components/charts/Sparkline"
 
 const data = [
@@ -64,35 +63,23 @@ const data = [
 export default {
   title: "Charts/Sparkline",
   component: Sparkline,
-} as Meta
-
-export const SparklineWithArea: React.FC = () => {
-  return (
-    <>
-      <Sparkline
-        data={data}
-        x={"date"}
-        y={"Housing"}
-        color={"#114d93"}
-        width="400px"
-        height="200px"
-      />
-    </>
-  )
 }
 
-export const SparklineBars: React.FC = () => {
-  return (
-    <>
-      <Sparkline
-        data={data}
-        x={"date"}
-        y={"Housing"}
-        type={"bar"}
-        color={"#114d93"}
-        width="400px"
-        height="200px"
-      />
-    </>
-  )
+const lineArgs = {
+  data: data,
+  x: "date",
+  y: "Housing",
+  color: "#114d93",
+  width: "400px",
+  height: "200px"
 }
+
+const barArgs = { ...lineArgs, type: "bar" }
+
+const Template = args => <Sparkline {...args} />
+
+const StandardSparkline = Template.bind({})
+StandardSparkline.args = lineArgs
+
+const SparklineWithBars = Template.bind({})
+SparklineWithBars.args = barArgs
