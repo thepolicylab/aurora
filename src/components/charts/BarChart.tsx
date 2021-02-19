@@ -132,6 +132,8 @@ export const BarChart: React.FC<BarChartProps> = ({
   stacked = false,
   title,
   subtitle,
+  xLab,
+  yLab,
   options = {},
   min = 0,
   max = undefined,
@@ -191,6 +193,8 @@ export const BarChart: React.FC<BarChartProps> = ({
         subtitle={subtitle}
         width={width}
         height={height}
+        xLab={xLab}
+        yLab={yLab}
         options={additionalOptions}
       />
     </>

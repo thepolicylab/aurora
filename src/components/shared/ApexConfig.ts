@@ -53,6 +53,12 @@ export const globalOptions: ApexOptions = {
     borderColor: "#DDDDDD",
   },
   xaxis: {
+    title: {
+      style: {
+        fontSize: "14px",
+        fontWeight: 500
+      }
+    },
     labels: {
       style: {
         fontSize: "14px",
@@ -60,6 +66,12 @@ export const globalOptions: ApexOptions = {
     },
   },
   yaxis: {
+    title: {
+      style: {
+        fontSize: "14px",
+        fontWeight: 500
+      }
+    },
     labels: {
       style: {
         fontSize: "14px",

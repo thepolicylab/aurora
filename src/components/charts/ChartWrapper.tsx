@@ -110,6 +110,7 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = ({
   }
 
   let chartOptions: ApexOptions = merge(globalOptions, commonOptions)
+
   chartOptions = merge(chartOptions, options)
   if (colors) Object.assign(chartOptions, { colors })
 

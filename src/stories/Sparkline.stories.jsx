@@ -78,8 +78,8 @@ const barArgs = { ...lineArgs, type: "bar" }
 
 const Template = args => <Sparkline {...args} />
 
-const StandardSparkline = Template.bind({})
+export const StandardSparkline = Template.bind({})
 StandardSparkline.args = lineArgs
 
-const SparklineWithBars = Template.bind({})
+export const SparklineWithBars = Template.bind({})
 SparklineWithBars.args = barArgs
