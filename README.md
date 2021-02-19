@@ -1,1 +1,13 @@
-# Aurora: The Policy Lab's Design System
+# The Policy Lab Design System
+
+Welcome to the documentation of The Policy Lab Design System! The Design System provides reusable react components that implement The Policy Lab Style Guide for visually consistent data visualizations on the Web. This documentaiton also provides instructions for integrating the design system into other web projects. 
+
+# What is the Design System?
+
+![Design System architeture](/aurora/design-system.png)
+
+The goal of the design system is to provide researchers and policymakers to create impactful data visualizations on-the-fly and disseminate their insights in visual narratives or web-based interactive dashboards. The design system has three major building blocks. The core of the design system is a library of data visualization components written in TypeScript and React. Based on [Apex Charts](https://apexcharts.com), the components in this library implement The Policy Lab Style Guide by default and provide animated, and interactive data visualizations with little configuration. These defaults are designed to be easily customizable to implement the style guides from other organizations.
+
+The second building block is [Storybook](https://thepolicylab.github.io/aurora), which is what you are looking at right now. Storybook is a multi-purpose tool for different user groups. To the end users of the design system, Storybook serves as a documentation site and a fitting room for the various data visualization components in the library. End users can navigate to the dedicated pages, termed as "stories," for each components on the left. They can find on each page the look and feel of the components, along with documentation on how to use these components, and code snippets of the components they are interested in. For developers, Storybook provides an environment to develop and test each component in isolation.
+
+More often than not, we will want to embedd these individual components into visual narratives or compose these component into an interactive dashboard. While the design system library is available as a package on NPM and can be easily included into any existing React project, we recommend using a static website generator such as [Gatsby](https://gatsbyjs.com) for new porjects. The most compelling reason for using Gatsby is that it supports MDX, an extension of Markdown that supports writing JSX within Markdown files, which is by far the most convenient way to embed the design system visualizations into narative contents. We have made available Gatsby starters that requires zero configuration for design system library integration. For other static site generators, we also provide support for generating html files with charts only, which can then be embedded into any other Web project that does not use React.

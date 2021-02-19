@@ -15,69 +15,44 @@ export default {
   component: BarChart,
 } as Meta
 
-export const HorizontalBarChart: React.FC = () => (
-  <>
-    <BarChart
-      data={data}
-      x={"category"}
-      y={["Exits", "Returns"]}
-      horizontal={true}
-      colors={[SeaBlue["500"], NewportPlum["500"]]}
-      title={"Exits and Returns"}
-      subtitle={"Number of people"}
-      max={1800}
-      width={"500"}
-      height={"600"}
-    />
-  </>
-)
+const Template = (args) => <BarChart {...args} />
 
-export const StandardBarChart: React.FC = () => (
-  <>
-    <BarChart
-      data={data}
-      x={"category"}
-      y={["Exits", "Returns"]}
-      horizontal={false}
-      title={"Exits and Returns"}
-      subtitle={"Number of people"}
-      max={1600}
-      width={"600"}
-      height={"500"}
-    />
-  </>
-)
+const standardArgs = {
+  data: data,
+  x: "category",
+  y: ["Exits", "Returns"],
+  colors: [SeaBlue["500"], NewportPlum["500"]],
+  title: "Exits and Returns",
+  subtitle: "Number of people",
+  max: 1800,
+  width: "600px",
+  height: "500px"
+}
 
-export const StackedHorizontalBarChart: React.FC = () => (
-  <>
-    <BarChart
-      data={data}
-      x={"category"}
-      y={["Exits", "Returns"]}
-      stacked={true}
-      horizontal={true}
-      colors={[SeaBlue["500"], NewportPlum["500"]]}
-      title={"Exits and Returns"}
-      subtitle={"Number of people"}
-      max={1800}
-      width={"500"}
-      height={"600"}
-    />
-  </>
-)
+const stackedArgs = { ...standardArgs, stacked: true }
 
-export const StandardStackedBarChart: React.FC = () => (
-  <>
-    <BarChart
-      data={data}
-      x={"category"}
-      y={["Exits", "Returns"]}
-      stacked={true}
-      horizontal={false}
-      title={"Exits and Returns"}
-      subtitle={"Number of people"}
-      width={"500"}
-      height={"600"}
-    />
-  </>
-)
+const horizontalArgs = {
+  ...standardArgs,
+  horizontal: true,
+  width: "500px",
+  height: "600px"
+}
+
+const horizontalStackedArgs = {
+  ...horizontalArgs,
+  stacked: true,
+  width: "500px",
+  height: "600px"
+}
+
+export const StandardBarChart = Template.bind({})
+StandardBarChart.args = standardArgs
+
+export const HorizontalBarChart = Template.bind({})
+HorizontalBarChart.args = horizontalArgs
+
+export const StackedBarChart = Template.bind({})
+StackedBarChart.args = stackedArgs
+
+export const HorizontalStackedBarChart = Template.bind({})
+HorizontalStackedBarChart.args = horizontalStackedArgs

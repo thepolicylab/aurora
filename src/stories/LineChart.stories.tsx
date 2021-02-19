@@ -66,25 +66,24 @@ export default {
   component: LineChart,
 } as Meta
 
-export const LineChartStraight: React.FC = () => {
-  return (
-    <>
-      <LineChart
-        data={data}
-        x={"date"}
-        y={[
-          "Housing",
-          "Disaster Services",
-          "Other Government/Economic Services",
-          "Food/Meals",
-          "COVID-19 Hotline",
-        ]}
-        title="Calls to 211 in the past week"
-        subtitle="Number of calls"
-        width="800px"
-        height="600px"
-        dashTypes={[0, 1, 2, 3, 4]}
-      />
-    </>
-  )
+const lineChartArgs = {
+  data: data,
+  x: "date",
+  y: [
+    "Housing",
+    "Disaster Services",
+    "Other Government/Economic Services",
+    "Food/Meals",
+    "COVID-19 Hotline",
+  ],
+  title: "Calls to 211 in the past week",
+  subtitle: "Number of calls",
+  width: "800px",
+  height: "600px",
+  dashTypes: [0, 1, 2, 3, 4],
 }
+
+const Template = args => <LineChart {...args} />
+
+export const StandardLineChart = Template.bind({})
+StandardLineChart.args = lineChartArgs

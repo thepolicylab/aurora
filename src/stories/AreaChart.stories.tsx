@@ -66,51 +66,30 @@ export default {
   component: AreaChart,
 } as Meta
 
-export const StackedAreaChart: React.FC = () => {
-  return (
-    <>
-      <AreaChart
-        data={data}
-        x={"date"}
-        y={[
-          "Housing",
-          "Disaster Services",
-          "Other Government/Economic Services",
-          "Food/Meals",
-          "COVID-19 Hotline",
-        ]}
-        title="Calls to 211 in the past week"
-        subtitle="Number of calls"
-        width="800px"
-        height="600px"
-        stacked={true}
-        strokeWidths={0}
-      />
-    </>
-  )
+const Template = args => <AreaChart {...args} />
+
+const stackedAreaArgs = {
+  data: data,
+  x: "date",
+  y: [
+    "Housing",
+    "Disaster Services",
+    "Other Government/Economic Services",
+    "Food/Meals",
+    "COVID-19 Hotline",
+  ],
+  title: "Calls to 211 in the past week",
+  subtitle: "Number of calls",
+  width: "800px",
+  height: "600px",
+  stacked: true,
+  strokeWidths: 0
 }
 
-export const StackedAreaChartWithGradient: React.FC = () => {
-  return (
-    <>
-      <AreaChart
-        data={data}
-        x={"date"}
-        y={[
-          "Housing",
-          "Disaster Services",
-          "Other Government/Economic Services",
-          "Food/Meals",
-          "COVID-19 Hotline",
-        ]}
-        title="Calls to 211 in the past week"
-        subtitle="Number of calls"
-        width="800px"
-        height="600px"
-        stacked={true}
-        strokeWidths={1}
-        gradient={true}
-      />
-    </>
-  )
-}
+const gradientArgs = { ...stackedAreaArgs, srokeWidths: 1, gradient: true }
+
+export const StackedAreaChart = Template.bind({})
+StackedAreaChart.args = stackedAreaArgs
+
+export const StackedAreaChartWithGradient = Template.bind({})
+StackedAreaChartWithGradient.args = gradientArgs

@@ -5,7 +5,13 @@ import { ChartWrapper } from "./ChartWrapper"
 import { LineChartProps, makeSeries, makeBaseOptions } from "./LineChart"
 
 export interface AreaChartProps extends LineChartProps {
+  /**
+   * Determines if the area polygons are going to be stacked.
+   */
   stacked?: boolean,
+  /**
+   * Determines if the gradient of the area are going to have a linear gradient.
+   */
   gradient?: boolean,
 }
 

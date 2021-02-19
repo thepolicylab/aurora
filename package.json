@@ -24,7 +24,8 @@
     "lint:package": "sort-package-json",
     "start": "react-scripts start",
     "storybook": "start-storybook -s ./src/assets -p 6006",
-    "test": "jest src"
+    "test": "jest src",
+    "storybook-docs": "start-storybook --docs"
   },
   "lint-staged": {
     "*.html": [
@@ -70,7 +71,7 @@
     "@emotion/css": "^11.0.0",
     "@loadable/component": "^5.14.1",
     "@storybook/addon-actions": "^6.1.1",
-    "@storybook/addon-controls": "^6.1.10",
+    "@storybook/addon-controls": "^6.1.18",
     "@storybook/addon-essentials": "^6.1.1",
     "@storybook/addon-links": "^6.1.1",
     "@storybook/eslint-config-storybook": "^2.4.0",

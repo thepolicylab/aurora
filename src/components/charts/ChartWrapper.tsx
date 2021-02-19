@@ -39,6 +39,9 @@ interface BasicProps {
    * The label for the y-axis
    */
   yLab?: string
+  /**
+   * The width of the chart object. Defaults to 100%.
+   */
   width?: string
   /**
    * The height of the chart object. Defaults to 600px.

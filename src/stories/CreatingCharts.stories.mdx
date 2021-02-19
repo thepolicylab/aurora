@@ -1,0 +1,146 @@
+import { Meta } from "@storybook/addon-docs/blocks"
+import { BarChart } from "../components/charts"
+
+<Meta title="Intro/Creating Charts" />
+
+# How to create charts with the design system?
+
+This page will show you how to use the `@thepolicylab/design-system` package to build interactive data visualizations.
+
+## Installation
+
+First, please install the latest version of the design system from `npm`:
+
+```bash
+npm install --save @thepolicylab/design-system
+```
+
+## About `jsx`
+
+The charts in the design system are React components, and to use them, we need to include them in `jsx` code. `jsx` is a JavaScript extension that allows HTML like syntax in JavaScript. React will compile `jsx` into plain JavaScript code. For more information on `jsx`, please see [this page](https://reactjs.org/docs/introducing-jsx.html).
+
+## High-level design ideas
+
+The design system is built to have APIs similar to other popular data visualization packages such as `seaborn`, `matplotlib`, and `ggplot`. The only difference is that the options are specified with `jsx`. Below is a standard bar chart:
+
+<BarChart
+  data={[
+    {
+      Exits: 569,
+      Returns: 55,
+      category: 'Children'
+    },
+    {
+      Exits: 178,
+      Returns: 18,
+      category: 'Adult 18-25'
+    },
+    {
+      Exits: 1535,
+      Returns: 199,
+      category: 'Adult 25-62'
+    },
+    {
+      Exits: 176,
+      Returns: 26,
+      category: 'Adult 62+'
+    }
+  ]}
+  title="Exits and Returns"
+  subtitle="Number of people"
+  x="category"
+  y={[
+    'Exits',
+    'Returns'
+  ]}
+  colors={[
+    '#189FC1',
+    '#B241A9'
+  ]}
+  width="600px"
+  height="500px"
+  max={1800}
+/>
+
+This bar chart is created with syntax that looks like this:
+
+```javascript
+<BarChart
+  title="Exits and Returns"
+  subtitle="Number of people"
+  x="category"
+  y={['Exits','Returns']}
+  colors={['#189FC1', '#B241A9']}
+  width="600px"
+  height="500px"
+  max={1800}
+  data={[
+    {
+      Exits: 569,
+      Returns: 55,
+      category: 'Children'
+    },
+    {
+      Exits: 178,
+      Returns: 18,
+      category: 'Adult 18-25'
+    },
+    {
+      Exits: 1535,
+      Returns: 199,
+      category: 'Adult 25-62'
+    },
+    {
+      Exits: 176,
+      Returns: 26,
+      category: 'Adult 62+'
+    }
+  ]}
+/>
+```
+
+If you look closely, you may see the similarities between this syntax and how you would regularly create a chart with `seaborn` in Python or other charting packages. First you specify a chart type such as one of the following.
+
+```javascript
+<LineChart />
+<BarChart />
+<AreaChart />
+```
+
+If you are familiar with HTML, this syntax will look very familiar to you. These are actually shorthands for
+
+```javascript
+<LineChart></LineChart>
+<BarChart></BarChart>
+<AreaChart></AreaChart>
+```
+
+Next, you can insert various options into the `jsx` tag. The syntax, again, is exactly like HTML. One difference is that you can pass JavaScript code instead of just strings. The way to do it is to wrap the code in curly brackets. See the lines for `y` and `colors` below. Here we are passing arrays to these options.
+
+```javascript
+<BarChart
+  title="Exits and Returns"
+  subtitle="Number of people"
+  x="category"
+  y={['Exits','Returns']}
+  colors={['#189FC1', '#B241A9']}
+  width="600px"
+  height="500px"
+  max={1800}
+  ...
+  }
+/>
+```
+
+For all chart types, usually what you'll need to specify are `data`, `x`, `y`, `title`, `subtitle`, `width`, and `height`. First let's talk about specifying data. All charts are designed to work with wide-formatted data in CSV. The data that we use in this example looks like this:
+
+|   category  | Exits | Returns |
+|:-----------:|:-----:|:-------:|
+|   Children  |  569  |    55   |
+| Adult 18-25 |  178  |    18   |
+| Adult 25-62 |  1535 |   199   |
+|  Adult 62+  |  176  |    26   |
+
+In order to specify this data, we can either specify a `string` that is the path to the `csv` file, or an array of `JSON` objects shown in this example. Then, you can specify the columns for `x`, and `y` axes. In this example, we are creating a grouped bar chart comparing `Exits` and `Returns` for different categories. So `category` is on the `x` axis, and `Exits` and `Returns` are on the `y` axis. Since we are using multiple columns, we pass `["Exits", "Returns"]` as an array to `y`, so we wrap it in curly brackets.
+
+Then we can adjust the data visualization, so we specify `title`, `subtitle`, `width` and `height`. For different chart types, there are other options that we can adjust. Please navigate to the documentation pages for these chart types. Be sure to check out code examples by clicking on "Show Code" on the bottom-right corner of each chart for code examples. Also feel free to adjust the options and see how they change how the charts look.
