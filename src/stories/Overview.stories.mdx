@@ -6,11 +6,11 @@ import { Meta } from "@storybook/addon-docs/blocks"
 
 ![Design System architeture](/aurora/design-system.png)
 
-Below you will find information on how to use the three building blocks of the Design System.
+You will find information on how to use the three building blocks of the Design System below.
 
 ## 1. The Design System Package
 
-The Design System package is a collection of React components built on top of [Apex Charts](https://apexcharts.com) that implements The Policy Lab style guides. At the moment, 4 components are implemented. They are `BarChart`, `LineChart`, `AreaChart`, and ``BarChart`, `LineChart`, `AreaChart`. Please click on the corresponding links on the left for detailed documentation on how to use them.
+The Design System package is a collection of React components built on top of [Apex Charts](https://apexcharts.com) that implements The Policy Lab style guides. At the moment, 4 components are implemented. They are `BarChart`, `LineChart`, `AreaChart`, and ``BarChart`, `LineChart`, `AreaChart`. Please click on the corresponding links in the panel on the left for detailed documentation on how to use them.
 
 To install this package to any node-based project, use `npm`:
 
@@ -22,21 +22,21 @@ npm install --save @thepolicylab/design-system
 
 ### What is Storybook?
 
-In a nutshell, [Storybook](https://storybookjs.org/) is an open source tool for developing UI components in React and other frameworks in isolation. However, this tool has evolved over the years to serve multiple purposes. We have adopted Storybook for two purposes - documentation and showcase for **end users** and development and testing environment for **developers**. The former could use Storybook just as other documentation written in `sphinx` in Python hosted on [readthedocs.io](https://readthedocs.io). 
+In a nutshell, [Storybook](https://storybookjs.org/) is an open source tool for developing UI components in React and other frameworks in isolation. However, this tool has evolved over the years to serve multiple purposes. We have adopted Storybook for two purposes (a) to house documentation for and showcase final product to **end users** and (b) as a development and testing environment for **developers**. End users can use Storybook just as other documentation written in `sphinx` in Python hosted on [readthedocs.io](https://readthedocs.io).
 
-### **For end users** How to use Storybook?
+### How can **end users** use Storybook?
 
-End users could use Storybook as a reference on how to create data visualizations using the design system libaray. The navigation on lists all the components available in the library. To see how to use any component, navigate to the page for that component. This page is known as a "Story." Each story has two parts: the story part, and the documentation part. The story part can be treated as a fitting room for components. End users can use the controls at the bottom of the screen to change the arguments of a component and see that changes the component. The documentation part focuses on one component and lists the arguments available, the types of the argument, and descriptions of that argument. The code written to generate the component being displayed is also available. The end users can copy the code as a starter to be included in their own projects.
+End users may use Storybook as a reference guide on how to create data visualizations using the design system libaray. The navigation panel on the left lists all the components available in the library. To see how to use any component, navigate to the that component's page. This page is known as a "Story." Each story has two parts: the "story" and the documentation. The story part can be treated as a "fitting room" for components. End users can use the controls at the bottom of the page to change the arguments of a component and observe how that changes the component. The documentation focuses on one component and lists all the arguments available, the types of the argument, and descriptions of that argument. The code written to generate the displayed component is also available. The end users can copy the code as a starter to be included in their own projects.
 
-### **For developers** How to use Storybook?
+### How can **developers** use Storybook?
 
 Developers can use Storybook as an environment to develop components in isolation. For more on how to use Storybook and write stories, please visit the official [Storybook documentation](https://storybook.js.org/docs/react/get-started/introduction).
 
 ## 3. Use with React-based Static Site Generators (Gatsby and Next.js)
 
-The `design-system` library provides reusable components to integrate data visualizations into any React project. However, most of the contents nowadays are written in `markdown`, which is then rendered by static site generators into html pages. That way, those writing the content do not need to worry about how their content is going to look on the website. The static site generators take care of that. Historically, it used to be difficult to include JavaScript content into `markdown`. MDX solves that problem. It can be viewed as an extension of `markdown` that supports `jsx`. It is by far the easiest way that we know to include the `design-system` library components into a website.
+The `design-system` library provides reusable components to integrate data visualizations into any React project. However, most of the contents nowadays are written in `markdown`, which is then rendered by static site generators into html pages. As such, those writing the content do not need to worry about how their content is going to look on the website. The static site generators take care of that. Historically, it was be difficult to include JavaScript content into `markdown`. MDX solves that problem. It can be viewed as an extension of `markdown` that supports `jsx`. It is by far the easiest way that we know of to include the `design-system` library components into a website.
 
-The static site generator [Gatsby.js](https://gatsbyjs.com) has outstanding support for `mdx` files, which is why we recommend it for creating content on the web. To see how Gatsby works in creating narrative stories with interactive visualizations, please clone [this repo](https://github.com/thepolicylab/design-system-mdx). Next, go to `/content/blog` directory. To create a new story, simply create a new directory, whose name will be the slug used for the website, and within the directory, create an `index.md` or `index.mdx` just like any other `markdown` files. You can easily include `jsx` syntax while writing this file. Please see [this](https://raw.githubusercontent.com/thepolicylab/design-system-mdx/master/content/blog/high-school-dropouts/index.mdx?token=AEJNTY324ZCAOQYN4TO4OU3AG7Y4Q) as an example. This repo is configured so that the `design-system` library is included and can be rendered by the `mdx` engine by default.
+The static site generator [Gatsby.js](https://gatsbyjs.com) has outstanding support for `mdx` files, which is why we recommend using it for creating content on the web. To see how Gatsby works when creating narrative stories with interactive visualizations, please clone [this repo](https://github.com/thepolicylab/design-system-mdx). Next, go to `/content/blog` directory. To create a new story, simply create a new directory, whose name will be the slug used for the website, and within the directory, create an `index.md` or `index.mdx` just like any other `markdown` file. You can easily include `jsx` syntax while writing this file. Please see [this](https://raw.githubusercontent.com/thepolicylab/design-system-mdx/master/content/blog/high-school-dropouts/index.mdx?token=AEJNTY324ZCAOQYN4TO4OU3AG7Y4Q) as an example. This repo is configured so that the `design-system` library is included and can be rendered by the `mdx` engine by default.
 
 ## 4. Use with Other Static Site Generators
 
