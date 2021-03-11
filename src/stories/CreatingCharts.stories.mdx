@@ -17,11 +17,11 @@ npm install --save @thepolicylab/design-system
 
 ## About `jsx`
 
-The charts in the design system are React components, and to use them, we need to include them in `jsx` code. `jsx` is a JavaScript extension that allows HTML like syntax in JavaScript. React will compile `jsx` into plain JavaScript code. For more information on `jsx`, please see [this page](https://reactjs.org/docs/introducing-jsx.html).
+The charts in the design system are React components, and to use them, we need to include them in [`jsx`](https://reactjs.org/docs/introducing-jsx.html) code. `jsx` is a JavaScript extension that allows HTML like syntax in JavaScript. React will compile `jsx` into plain JavaScript code. For more information on `jsx`, please see [this page](https://reactjs.org/docs/introducing-jsx.html).
 
 ## High-level design ideas
 
-The design system is built to have APIs similar to other popular data visualization packages such as `seaborn`, `matplotlib`, and `ggplot`. The only difference is that the options are specified with `jsx`. Below is a standard bar chart:
+The design system is built to have APIs similar to other popular data visualization packages such as `seaborn`, `matplotlib`, and `ggplot`. The only difference is that the options are specified with the `jsx` syntax, which is a combination of HTML syntax and embedded JavaScript. Below is a standard bar chart:
 
 <BarChart
   data={[
@@ -115,7 +115,7 @@ If you are familiar with HTML, this syntax will look very familiar to you. These
 <AreaChart></AreaChart>
 ```
 
-Next, you can insert various options into the `jsx` tag. The syntax, again, is exactly like HTML. One difference is that you can pass JavaScript code instead of just strings. The way to do it is to wrap the code in curly brackets. See the lines for `y` and `colors` below. Here we are passing arrays to these options.
+Next, you can insert various options into the `jsx` tag. The syntax, again, is exactly like HTML. One difference is that you can pass JavaScript code instead of just strings. The way to do it is to wrap the code in curly brackets `{}`. See the lines for `y` and `colors` below. Here we are passing arrays to these options.
 
 ```javascript
 <BarChart
@@ -132,7 +132,7 @@ Next, you can insert various options into the `jsx` tag. The syntax, again, is e
 />
 ```
 
-For all chart types, usually what you'll need to specify are `data`, `x`, `y`, `title`, `subtitle`, `width`, and `height`. First let's talk about specifying data. All charts are designed to work with wide-formatted data in CSV. The data that we use in this example looks like this:
+For all chart types, usually what you'll need to specify are `data`, `x`, `y`, `title`, `subtitle`, `width`, and `height`. First, let's talk about specifying data. All charts are designed to work with wide-formatted data in CSV. The data that we use in this example looks like this:
 
 |   category  | Exits | Returns |
 |:-----------:|:-----:|:-------:|
@@ -143,4 +143,4 @@ For all chart types, usually what you'll need to specify are `data`, `x`, `y`, `
 
 In order to specify this data, we can either specify a `string` that is the path to the `csv` file, or an array of `JSON` objects shown in this example. Then, you can specify the columns for `x`, and `y` axes. In this example, we are creating a grouped bar chart comparing `Exits` and `Returns` for different categories. So `category` is on the `x` axis, and `Exits` and `Returns` are on the `y` axis. Since we are using multiple columns, we pass `["Exits", "Returns"]` as an array to `y`, so we wrap it in curly brackets.
 
-Then we can adjust the data visualization, so we specify `title`, `subtitle`, `width` and `height`. For different chart types, there are other options that we can adjust. Please navigate to the documentation pages for these chart types. Be sure to check out code examples by clicking on "Show Code" on the bottom-right corner of each chart for code examples. Also feel free to adjust the options and see how they change how the charts look.
+Final we can fine tune the data visualization, so we specify `title`, `subtitle`, `width` and `height`. There are other options that we can adjust for different chart types. Please navigate to the corresponding documentation pages for more details. Be sure to check out code examples by clicking on "Show Code" on the bottom-right corner of each chart for code examples. Also feel free to adjust the options and see how they change the way the charts look.
